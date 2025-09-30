@@ -46,7 +46,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/blogs", blogRouter);
 
 // Catch-all: serve index.html for all non-API routes (SPA support)
-app.get(/^\/(?!api).*/, (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
