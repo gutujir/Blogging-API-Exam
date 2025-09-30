@@ -8,7 +8,7 @@ export const useAuthStore = create((set) => ({
   async login(email, password) {
     set({ loading: true, error: null });
     try {
-      const res = await API.post("/login", { email, password });
+      const res = await API.post("/auth/login", { email, password });
       set({ user: res.data.user, loading: false });
       return true;
     } catch (err) {
@@ -22,7 +22,7 @@ export const useAuthStore = create((set) => ({
   async signup(data) {
     set({ loading: true, error: null });
     try {
-      const res = await API.post("/signup", data);
+      const res = await API.post("/auth/signup", data);
       set({ user: res.data.user, loading: false });
       return true;
     } catch (err) {
@@ -36,7 +36,7 @@ export const useAuthStore = create((set) => ({
   async logout() {
     set({ loading: true, error: null });
     try {
-      await API.post("/logout");
+      await API.post("/auth/logout");
       set({ user: null, loading: false });
     } catch (err) {
       set({
@@ -48,7 +48,7 @@ export const useAuthStore = create((set) => ({
   async checkAuth() {
     set({ loading: true });
     try {
-      const res = await API.get("/check-auth");
+      const res = await API.get("/auth/check-auth");
       set({ user: res.data.user, loading: false });
     } catch {
       set({ user: null, loading: false });
