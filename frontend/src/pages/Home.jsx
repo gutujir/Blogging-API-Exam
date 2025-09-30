@@ -18,7 +18,7 @@ const Home = ({ user }) => (
           <Button className="w-40">My Dashboard</Button>
         </Link>
         <Link to="/blogs">
-          <Button className="w-40 border-2 border-blue-700 text-blue-800 bg-white hover:bg-blue-700 hover:text-white font-bold transition-colors">
+          <Button className="w-40 border-2 border-blue-700 text-blue-800 hover:bg-white hover:text-blue-500 font-bold transition-colors">
             Browse Blogs
           </Button>
         </Link>
