@@ -3,6 +3,7 @@ import { connectDB } from "./config/connectDB.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 
 import authRouter from "./routes/auth.route.js";
 import blogRouter from "./routes/blog.route.js";
@@ -10,6 +11,7 @@ import blogRouter from "./routes/blog.route.js";
 dotenv.config();
 
 const app = express();
+const __dirname = path.resolve();
 
 // CORS setup
 const allowedOrigins = [
@@ -35,12 +37,21 @@ app.use(
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookies
 
+// Serve static files from the frontend build
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
+
+// API routes
+app.use("/api/auth", authRouter);
+app.use("/api/blogs", blogRouter);
+
+// Catch-all: send index.html for any other route (SPA support)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
+
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
-
-app.use("/api/auth", authRouter);
-app.use("/api/blogs", blogRouter);
 
 const PORT = process.env.PORT || 3000;
 
