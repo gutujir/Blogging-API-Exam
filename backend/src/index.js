@@ -12,7 +12,6 @@ import blogRouter from "./routes/blog.route.js";
 dotenv.config();
 
 const app = express();
-const __dirname = path.resolve();
 
 // CORS setup
 const allowedOrigins = [
@@ -38,17 +37,9 @@ app.use(
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookies
 
-// Serve static files from frontend/dist
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
-
 // API routes
 app.use("/api/auth", authRouter);
 app.use("/api/blogs", blogRouter);
-
-// Catch-all: serve index.html for all non-API routes (SPA support)
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-});
 
 const PORT = process.env.PORT || 3000;
 
