@@ -45,7 +45,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/blogs", blogRouter);
 
 // Catch-all: send index.html for any other route (SPA support)
-app.get("*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
