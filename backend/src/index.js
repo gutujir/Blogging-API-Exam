@@ -1,6 +1,10 @@
 import express from "express";
 import { connectDB } from "./config/connectDB.js";
 import dotenv from "dotenv";
+
+import express from "express";
+import { connectDB } from "./config/connectDB.js";
+import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
@@ -37,25 +41,21 @@ app.use(
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookies
 
-// Serve static files from the frontend build
+// Serve static files from frontend/dist
 app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
 // API routes
 app.use("/api/auth", authRouter);
 app.use("/api/blogs", blogRouter);
 
-// Catch-all: send index.html for any other route (SPA support)
-app.get(/.*/, (req, res) => {
+// Catch-all: serve index.html for all non-API routes (SPA support)
+app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-});
-
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
 });
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, (req, res) => {
+app.listen(PORT, () => {
   connectDB();
   console.log(`Server is running on http://localhost:${PORT}`);
 });
