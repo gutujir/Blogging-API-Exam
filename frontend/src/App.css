@@ -1,0 +1,16 @@
+body,
+#root {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 50%, #fbc2eb 100%);
+  background-size: 200% 200%;
+  animation: bg-move 16s ease-in-out infinite alternate;
+}
+
+@keyframes bg-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
