@@ -103,6 +103,17 @@ export const getMyBlogs = async (req, res) => {
   }
 };
 
+// Get a single blog by ID for the owner (draft or published)
+export const getMyBlogById = async (req, res) => {
+  try {
+    const blog = await Blog.findOne({ _id: req.params.id, author: req.userId });
+    if (!blog) return res.status(404).json({ message: "Blog not found" });
+    res.json({ success: true, blog });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
 // Get published blogs (public, paginated, searchable, orderable)
 export const getPublishedBlogs = async (req, res) => {
   try {

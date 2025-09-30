@@ -7,7 +7,7 @@ import Spinner from "./ui/Spinner";
 import { toast } from "react-hot-toast";
 
 const DashboardBlogList = ({ blogs }) => {
-  const { loading, deleteBlog, publishBlog } = useBlogStore();
+  const { loading, deleteBlog, publishBlog, setBlogState } = useBlogStore();
   const navigate = useNavigate();
 
   const handleDelete = async (id) => {
@@ -15,6 +15,11 @@ const DashboardBlogList = ({ blogs }) => {
       const ok = await deleteBlog(id);
       if (ok) toast.success("Blog deleted");
     }
+  };
+
+  const handleUnpublish = async (id) => {
+    const ok = await setBlogState(id, "draft");
+    if (ok) toast.success("Blog moved to draft");
   };
 
   const handlePublish = async (id) => {
@@ -83,6 +88,17 @@ const DashboardBlogList = ({ blogs }) => {
               >
                 {loading ? <Spinner className="inline-block mr-1" /> : null}
                 Publish
+              </Button>
+            )}
+            {blog.state === "published" && (
+              <Button
+                size="sm"
+                className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                onClick={() => handleUnpublish(blog._id)}
+                disabled={loading}
+              >
+                {loading ? <Spinner className="inline-block mr-1" /> : null}
+                Move to Draft
               </Button>
             )}
             <Button

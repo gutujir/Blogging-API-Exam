@@ -19,7 +19,7 @@ const EditBlog = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchBlog(id);
+    fetchBlog(id, { owner: true });
   }, [id, fetchBlog]);
 
   useEffect(() => {

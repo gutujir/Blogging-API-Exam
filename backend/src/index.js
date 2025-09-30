@@ -8,6 +8,7 @@ import path from "path";
 
 import authRouter from "./routes/auth.route.js";
 import blogRouter from "./routes/blog.route.js";
+import { Blog } from "./models/blog.model.js";
 
 dotenv.config();
 
@@ -36,6 +37,12 @@ app.use(
 // Middlewares
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookies
+
+// Attach models to req for inline controllers
+app.use((req, res, next) => {
+  req.models = { Blog };
+  next();
+});
 
 // API routes
 app.use("/api/auth", authRouter);

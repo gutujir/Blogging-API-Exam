@@ -38,10 +38,15 @@ export const useBlogStore = create((set) => ({
       });
     }
   },
-  async fetchBlog(id) {
+  async fetchBlog(id, { owner = false } = {}) {
     set({ loading: true, error: null });
     try {
-      const res = await API.get(`/blogs/${id}`);
+      let res;
+      if (owner) {
+        res = await API.get(`/blogs/me/blogs/${id}`);
+      } else {
+        res = await API.get(`/blogs/${id}`);
+      }
       set({ blog: res.data.blog, loading: false });
     } catch (err) {
       set({
@@ -96,6 +101,24 @@ export const useBlogStore = create((set) => ({
     } catch (err) {
       set({
         error: err.response?.data?.message || "Failed to publish blog",
+        loading: false,
+      });
+      return false;
+    }
+  },
+
+  async setBlogState(id, state) {
+    set({ loading: true, error: null });
+    try {
+      const res = await API.patch(`/blogs/${id}`, { state });
+      set((prev) => ({
+        blogs: prev.blogs.map((b) => (b._id === id ? res.data.blog : b)),
+        loading: false,
+      }));
+      return true;
+    } catch (err) {
+      set({
+        error: err.response?.data?.message || "Failed to update blog state",
         loading: false,
       });
       return false;
