@@ -1,16 +1,110 @@
-# React + Vite
+# Blogging Platform Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive frontend for the Blogging API, built with React, Vite, and Tailwind CSS. This SPA allows users to read, write, and manage blogs, as well as handle authentication and account management.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- User signup, login, logout, and dashboard
+- Blog creation, editing, publishing, and deletion
+- Public blog listing and detail pages
+- Responsive, mobile-friendly UI (Tailwind CSS)
+- API integration with secure JWT cookies
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm (v9+ recommended)
+
+### Setup
+
+1. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+2. **Configure environment variables:**
+   - Create a `.env` file in the `frontend/` directory:
+     ```env
+     VITE_API_URL=http://localhost:3000/api
+     ```
+   - Set this to your backend API URL if deploying.
+3. **Run the development server:**
+   ```sh
+   npm run dev
+   ```
+   The app will be available at `http://localhost:5173`.
+
+---
+
+## Project Structure
+
+```
+frontend/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   └── ui/
+│   ├── pages/
+│   │   ├── auth/
+│   │   ├── blogs/
+│   │   └── dashboard/
+│   ├── store/
+│   ├── utils/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── ...
+├── index.html
+├── tailwind.config.js
+├── vite.config.js
+└── .env
+```
+
+---
+
+## Environment Variables
+
+| Variable     | Description                                               |
+| ------------ | --------------------------------------------------------- |
+| VITE_API_URL | Backend API base URL (default: http://localhost:3000/api) |
+
+---
+
+## Usage
+
+1. **Sign up or log in** to create and manage your blogs.
+2. **Create, edit, publish, or delete** blogs from your dashboard.
+3. **Browse published blogs** on the home page or blog list.
+4. **View blog details** and author info on the blog detail page.
+
+---
+
+## Deployment
+
+1. **Build for production:**
+   ```sh
+   npm run build
+   ```
+2. **Preview production build:**
+   ```sh
+   npm run preview
+   ```
+3. **Deploy** the `dist/` folder to your preferred static hosting (e.g., Vercel, Netlify, Render static site, etc.).
+
+---
+
+## API Reference
+
+This frontend expects the Blogging API backend to be running and accessible at the URL specified in `VITE_API_URL`.
+See the [backend README](../backend/README.md) for full API documentation and endpoint details.
+
+---
+
+## License
+
+This project is licensed under the ISC License.
