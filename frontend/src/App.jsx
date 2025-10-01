@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import BlogListPage from "./pages/blogs/BlogListPage";
 import BlogDetailPage from "./pages/blogs/BlogDetailPage";
 import Dashboard from "./pages/dashboard/Dashboard";
+import MyBlog from "./pages/dashboard/MyBlog";
 import BlogEditor from "./pages/dashboard/BlogEditor";
 import EditBlog from "./pages/dashboard/EditBlog";
 import NotFound from "./pages/NotFound";
@@ -49,6 +50,10 @@ const App = () => {
             <Route
               path="/dashboard"
               element={user ? <Dashboard /> : <Navigate to="/auth/login" />}
+            />
+            <Route
+              path="/dashboard/myblogs"
+              element={user ? <MyBlog /> : <Navigate to="/auth/login" />}
             />
             <Route
               path="/dashboard/new"

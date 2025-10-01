@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useBlogStore } from "../../store/blogs";
-import { useAuthStore } from "../../store/auth";
+// import { useAuthStore } from "../../store/auth";
 import BlogList from "../../components/BlogList";
 import Container from "../../components/ui/Container";
 import Spinner from "../../components/ui/Spinner";
@@ -8,7 +8,7 @@ import Pagination from "../../components/Pagination";
 
 const BlogListPage = () => {
   const { blogs, fetchBlogs, loading, error, meta } = useBlogStore();
-  const { user } = useAuthStore();
+  // const { user } = useAuthStore();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [orderBy, setOrderBy] = useState("");
@@ -32,23 +32,7 @@ const BlogListPage = () => {
 
   return (
     <Container className="py-8">
-      {user && (
-        <div className="flex items-center gap-3 mb-6 p-4 rounded-lg bg-blue-50 border border-blue-100 shadow-sm">
-          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold text-lg uppercase">
-            {user.first_name?.[0] || "U"}
-            {user.last_name?.[0] || ""}
-          </div>
-          <div>
-            <div className="font-semibold text-blue-800">
-              {user.first_name} {user.last_name}
-            </div>
-            <div className="text-xs text-gray-500">{user.email}</div>
-          </div>
-          <span className="ml-auto px-2 py-1 text-xs rounded bg-blue-100 text-blue-700 font-medium">
-            Logged in
-          </span>
-        </div>
-      )}
+      {/* User info card removed as per request */}
       <h1 className="text-3xl font-bold mb-6 text-center">Latest Blogs</h1>
       <form
         onSubmit={handleSearch}
