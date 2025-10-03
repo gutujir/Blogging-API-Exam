@@ -2,7 +2,11 @@
 
 > **Deployment Notice:**
 >
-> The app is deployed on [Render](https://render.com/). To check the deployed app visit [https://blogging-api-exam-frontend.onrender.com](https://blogging-api-exam-frontend.onrender.com) > **Resend email sending is limited on the deployed app:** Due to domain verification issues, you can only send emails to your own (verified) email address. For full email features, run locally or verify your domain with Resend.
+> The app is deployed on [Render](https://render.com/). To check the deployed app visit [https://blogging-api-exam-frontend.onrender.com](https://blogging-api-exam-frontend.onrender.com)
+>
+> > Email verification functionality is handled on the backend for account verification and password reset processes. However, due to domain-related issues, these features may not function correctly on the deployed app. For testing purposes, you can configure the Resend email service locally to ensure the functionality works as expected.
+
+## About the project
 
 A full-stack blogging platform built with Node.js, Express, MongoDB (Mongoose), and React (Vite). The backend provides a secure RESTful API for user authentication, blog management, and email verification using Resend. The frontend is a modern, responsive SPA for blog reading, writing, and user management.
 
